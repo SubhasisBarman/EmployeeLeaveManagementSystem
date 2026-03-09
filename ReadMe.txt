@@ -14,3 +14,7 @@ Step 7: Use the following credentials to log in:
 
     i. Admin: admin@example.com/ admin123
     ii. Employee: employee@example.com/ emp123
+
+
+
+----------DataBase present in DataBase Folder and Requirements present in Dot Net Assignment.pdf-------------
