@@ -1,0 +1,75 @@
+﻿@model Employee
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var isEdit = Model != null && Model.EmployeeId > 0;
+    ViewData["Title"] = isEdit ? "Edit Employee" : "Add Employee";
+}
+
+<div class="container-fluid">
+
+    <h3 class="text-center fw-bold mb-4">
+        @(isEdit ? "Edit Employee" : "Add Employee")
+    </h3>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    @using (Html.BeginForm("AddEditEmployee", "Admin", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        if (isEdit)
+                        {
+                            @Html.HiddenFor(model => model.EmployeeId)
+                        }
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Full Name</label>
+                            @Html.TextBoxFor(model => model.FullName,new { @class = "form-control", placeholder = "Enter full name" })
+                            @Html.ValidationMessageFor(model => model.FullName, "",new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Email</label>
+                        @Html.TextBoxFor(model => model.Email,new { @class = "form-control", placeholder = "Enter email address", type = "email" })
+                        @Html.ValidationMessageFor(model => model.Email, "",new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Department</label>
+                        @Html.TextBoxFor(model => model.Department,new { @class = "form-control", placeholder = "Enter department" })
+                        @Html.ValidationMessageFor(model => model.Department, "",new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="@Url.Action("Employees", "Admin")" class="btn btn-secondary px-4">Cancel</a>
+
+                        <button type="submit" class="btn btn-success px-4 me-2 @(isEdit ? "btn-primary" : "btn-success")"> @(isEdit ? "Update" : "Save")</button>
+                    </div>
+                                        }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+    .btn {
+        border-radius: 8px;
+    }
+</style>

@@ -1,0 +1,66 @@
+﻿
+@model EmployeeDashboardViewModel
+@{
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <h3 class="text-center fw-bold mb-5">Employee Dashboard</h3>
+
+    <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card dashboard-card bg-primary text-white shadow-sm h-80">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-event fs-4"></i>
+                    <h6 class="mt-3">Total Leaves</h6>
+                    <h2 class="fw-bold fs-4">@Model.TotalLeaves</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card dashboard-card bg-warning text-white shadow-sm h-80">
+                <div class="card-body text-center">
+                    <i class="bi bi-hourglass-split fs-4"></i>
+                    <h6 class="mt-3">Pending</h6>
+                    <h2 class="fw-bold fs-4">@Model.PendingLeaves</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card dashboard-card bg-success text-white shadow-sm h-80">
+                <div class="card-body text-center">
+                    <i class="bi bi-check-circle fs-4"></i>
+                    <h6 class="mt-3">Approved</h6>
+                    <h2 class="fw-bold fs-4">@Model.ApprovedLeaves</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card dashboard-card bg-danger text-white shadow-sm h-80">
+                <div class="card-body text-center">
+                    <i class="bi bi-x-circle fs-4"></i>
+                    <h6 class="mt-3">Rejected</h6>
+                    <h2 class="fw-bold fs-4">@Model.RejectedLeaves</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .dashboard-card {
+        border-radius: 15px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .dashboard-card:hover {
+            transform: translateY(-5px);
+    }
+</style>

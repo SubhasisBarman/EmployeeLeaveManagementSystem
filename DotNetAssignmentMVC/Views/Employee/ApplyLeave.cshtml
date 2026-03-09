@@ -1,0 +1,58 @@
+﻿
+@model LeaveRequest
+@{
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+    var today = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+
+                     <h3 class="text-center fw-bold mb-4">Apply Leave</h3>
+                     
+                     @if (!ViewData.ModelState.IsValid)
+                     {
+                         <div class="alert alert-danger">
+                             @Html.ValidationSummary(false, "", new { @class = "mb-0" })
+                         </div>
+                     }
+                     
+                     @using (Html.BeginForm("ApplyLeave", "Employee", FormMethod.Post))
+                     {
+                         <div class="mb-3">
+                             <label class="form-label">From Date</label>
+                             @Html.TextBoxFor(m => m.FromDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", id = "fromDate", min = today })
+                             @Html.ValidationMessageFor(m => m.FromDate, "", new { @class = "text-danger" })
+                         </div>
+                     
+                         <div class="mb-3">
+                             <label class="form-label">To Date</label>
+                             @Html.TextBoxFor(m => m.ToDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", id = "toDate", min = today })
+                             @Html.ValidationMessageFor(m => m.ToDate, "",  new { @class = "text-danger" })
+                         </div>
+                         <div class="text-danger" id="dateError"></div>
+                     
+                         <div class="mb-3">
+                             <label class="form-label">Reason</label>
+                             @Html.TextAreaFor(m => m.Reason, new { @class = "form-control", rows = "4" })
+                             @Html.ValidationMessageFor(m => m.Reason, "", new { @class = "text-danger" })
+                         </div>
+                     
+                         <div class="text-center mt-4">
+                         <a href="@Url.Action("Dashboard", "Employee")"class="btn btn-secondary px-4">Cancel</a>
+                     
+                             <button type="submit" class="btn btn-success px-4 me-2">Apply Leave</button>                
+                         </div>
+                     }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
